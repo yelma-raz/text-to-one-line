@@ -19,8 +19,13 @@ def convertir_texte():
 def copier_texte():
     fenetre.clipboard_clear()  # Vider le presse-papier
     fenetre.clipboard_append(result_entry.get())  # Copier le texte converti
-    messagebox.showinfo("Copié", "Le texte a été copié dans le presse-papier")
-
+   # messagebox.showinfo("Copié", "Le texte a été copié dans le presse-papier")
+   
+# Fonction pour réinitialiser les zones de texte
+def reinitialiser_texte():
+    entry.delete("1.0", tk.END)  # Effacer le texte entré
+    result_entry.delete(0, tk.END)  # Effacer le texte converti
+    
 # Création de la fenêtre principale
 fenetre = tk.Tk()
 fenetre.title("Convertir en une seule ligne")
@@ -36,6 +41,10 @@ entry.pack(padx=10, pady=10)
 convert_button = tk.Button(fenetre, text="Convertir", command=convertir_texte)
 convert_button.pack(pady=5)
 
+# Bouton pour réinitialiser le texte
+reset_button = tk.Button(fenetre, text="Réinitialiser", command=reinitialiser_texte)
+reset_button.pack(pady=10)
+
 # Zone d'affichage du résultat
 result_label = tk.Label(fenetre, text="Texte sur une seule ligne :")
 result_label.pack(padx=10, pady=5)
@@ -46,6 +55,9 @@ result_entry.pack(padx=10, pady=5)
 # Bouton pour copier le texte
 copy_button = tk.Button(fenetre, text="Copier", command=copier_texte)
 copy_button.pack(pady=10)
+
+
+
 
 # Lancer l'application
 fenetre.mainloop()
